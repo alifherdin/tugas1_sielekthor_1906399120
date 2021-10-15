@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Cari Barang</h2>
+                    <br>
+                    <form th:action="@{/barang/cari/stok/(stok=${stok})}" method="GET">
+    
+                        Tipe : <br>
+                        <select name="tipe" class="form-control">
+                            <div th:each="j : ${listTipe}">
+                                <option th:value="${j.id}" th:text="${j.namaTipe}"></option>
+                            </div>
+                        </select>
+                        <br>
+    
+                        Stok : <br>
+                        <input id="available" type="radio" name="stok" th:value="@{1}" checked>
+                        <label for="available">Available</label><br>
+                        <input id="soldout" type="radio" name="stok" th:value="@{0}">
+                        <label for="soldout">Sold out</label><br><br>
+
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <a class="btn btn-primary" href="/home">Home</a>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <div th:if="${listBarang.size() != 0}" class="container">
+        <div class="card m-4 p-4">
+            <h3 class="text-center">Daftar Pembelian</h3><br>
+            <table class="table table-striped text-center">
+                <thead class="bg-warning">
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Barang</th>
+                        <th>Harga Barang</th>
+                        <th>Tipe</th>
+                        <th>Stok</th>
+                        <th></th>
+                        <th>Aksi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="i, i_status : ${listBarang}">
+                        <td th:text="${i_status.count}" style="text-align: center;"></td>
+                        <td th:text="${i.namaBarang}"></td>
+                        <td th:text="${i.hargaBarang}"></td>
+                        <td th:text="${i.tipe.getNamaTipe()}"></td>
+                        <td th:text="${i.stok}"></td>
+                        <div>
+                            <td><a class="btn btn-primary font-weight-bold text-dark" th:href="@{/barang/lihat/} + ${i.id}" style="border-radius: 10px;">Lihat</a></td>
+                            <td><a class="btn btn-warning font-weight-bold text-dark" th:href="@{/barang/ubah/} + ${i.id}" style="border-radius: 10px;">Ubah</a></td>
+                            <td><a class="btn btn-danger font-weight-bold text-dark" th:href="@{/barang/del/} + ${i.id}" style="border-radius: 10px;">Hapus</a></td>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+</body>
+</html>
+
+

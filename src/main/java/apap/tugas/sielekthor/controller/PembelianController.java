@@ -196,37 +196,5 @@ public class PembelianController {
 
         return "cari-pembelian";
     }
-
-    // @GetMapping(value = "cari/pembelian")
-    // public String cariPembelian(@RequestParam(value = "idMember", required = false) Long idMember, 
-    //                             @RequestParam(value = "tipePembayaran", required = false) Boolean tipePembayaran, 
-    //                             Model model) {
-        
-    //     List<PembelianModel> pembelians = new ArrayList<>();
-    //     List<MemberModel> members = memberService.getListMember();
-    //     List<Long> listQ = new ArrayList<Long>();
-                        
-    //     if ((idMember != null) && (tipePembayaran != null)) {
-    //         for (PembelianModel i : pembelianService.getListPembelian()) {
-    //             if (i.getMember().getId().longValue() == idMember.longValue()) {
-    //                 if ((i.getIsCash().equals(tipePembayaran))) {
-    //                     pembelians.add((i));
-    //                 }
-    //             }
-    //         }
-
-    //         for (int i = 0; i < pembelians.size(); i++) {
-    //             Long temp = pembelianService.getTotalQuantityPembelian(pembelians.get(i));
     
-    //             listQ.add(temp);
-    //         }
-    //     }
-
-    //     model.addAttribute("listQuantity", listQ);
-    //     model.addAttribute("listPembelian", pembelians);
-    //     model.addAttribute("listMember", members);
-
-    //     return "cari-pembelian";
-    // }
-
 }
