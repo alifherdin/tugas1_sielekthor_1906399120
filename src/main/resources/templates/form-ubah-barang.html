@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Update Barang</h2>
+                <br>
+                <form th:action="@{/barang/ubah}" th:object="${barang}" method="POST">
+ 
+                    <input type="hidden" th:field="*{id}" />
+ 
+                    Nama Barang : <br>
+                    <input class="form-control" type="text" name="namaBarang" th:value="*{namaBarang}"/>
+                    <br>
+ 
+                    Kode Barang: <br>
+                    <input class="form-control" type="text" name="kodeBarang" th:value="*{kodeBarang}" readonly/>
+                    <br>
+ 
+                    Merk Barang : <br>
+                    <input class="form-control" type="text" name="merkBarang" th:value="*{merkBarang}" readonly/>
+                    <br>
+ 
+                    Stok Barang : <br>
+                    <input class="form-control" type="text" name="stok" th:value="*{stok}"/>
+                    <br>
+ 
+                    Garansi Toko : <br>
+                    <input class="form-control" type="text" name="jumlahGaransi" th:value="*{jumlahGaransi}"/>
+                    <br>
+
+                    Deskripsi : <br>
+                    <input class="form-control" type="text" name="deskripsiBarang" th:value="*{deskripsiBarang}"/>
+                    <br>
+ 
+                    Tipe Barang : <br>
+                    <select name="tipe" class="form-control" readonly>
+                        <option th:value="${barang.tipe.getId()}" th:text="${barang.tipe.getNamaTipe()}" readonly></option>
+                    </select><br>
+ 
+                    Harga : <br>
+                    <input class="form-control" type="text" name="hargaBarang" th:value="*{hargaBarang}"/>
+                    <br>
+ 
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="btn btn-primary" href="/barang">Kembali</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</body>
+</html>

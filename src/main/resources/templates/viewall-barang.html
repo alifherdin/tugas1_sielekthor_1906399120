@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor: List Barang</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 class="text-center">List Barang</h2>
+                <br><br>
+                <a class="btn btn-warning font-weight-bold text-dark" th:href="@{/barang/tambah}"  style="border-radius: 16px;">+ Tambah barang</a> 
+                <br><br>
+                <table class="table table-striped text-center">
+                    <thead class="bg-warning">
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Barang</th>
+                            <th>Harga Barang</th>
+                            <th>Tipe</th>
+                            <th>Stok</th>
+                            <th></th>
+                            <th>Aksi</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="i, i_status : ${listBarang}">
+                            <td th:text="${i_status.count}" style="text-align: center;"></td>
+                            <td th:text="${i.namaBarang}"></td>
+                            <td th:text="${i.hargaBarang}"></td>
+                            <td th:text="${i.tipe.getNamaTipe()}"></td>
+                            <td th:text="${i.stok}"></td>
+                            <div>
+                                <td><a class="btn btn-primary font-weight-bold text-dark" th:href="@{/barang/lihat/} + ${i.id}" style="border-radius: 10px;">Lihat</a></td>
+                                <td><a class="btn btn-warning font-weight-bold text-dark" th:href="@{/barang/ubah/} + ${i.id}" style="border-radius: 10px;">Ubah</a></td>
+                                <td><a class="btn btn-danger font-weight-bold text-dark" th:href="@{/barang/del/} + ${i.id}" style="border-radius: 10px;">Hapus</a></td>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <!-- <a class="btn btn-primary" href="/">Home</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

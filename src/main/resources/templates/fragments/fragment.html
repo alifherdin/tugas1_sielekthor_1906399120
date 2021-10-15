@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <head th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+    <head th:fragment="js">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+    </head>
+</head>
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a class="navbar-brand font-weight-bold" style="color: white;" href="/">SIELEKTHOR</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expand="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <a th:href="@{/barang}" class="nav-item nav-link font-weight-bold">
+                    Barang
+                    <span class="sr-only">(current)</span>
+                </a>
+                <a th:href="@{/pembelian}" class="nav-item nav-link font-weight-bold">
+                    Pembelian
+                    <span class="sr-only">(current)</span>
+                </a>
+                <a th:href="@{/barang/filtered}" class="nav-item nav-link font-weight-bold">
+                    Filter Pembelian
+                    <span class="sr-only">(current)</span>
+                </a>
+            </ul>
+        </div>
+    </nav>
+</body>

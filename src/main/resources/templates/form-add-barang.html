@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Form Tambah Barang</h2>
+                    <br>
+                    <form id = "barang-form" th:action="@{/barang/tambah}" th:object="${barang}" method="POST">
+                        Nama Barang : <br>
+                        <input class="form-control" type="text" name="namaBarang"/><br><br>
+    
+                        Kode Barang: <br>
+                        <input class="form-control" type="text" name="kodeBarang"/><br><br>
+    
+                        Merk Barang : <br>
+                        <input class="form-control" type="text" name="merkBarang"/><br><br>
+    
+                        Stok Barang : <br>
+                        <input required class="form-control" type="text" name="stok"/><br><br>
+    
+                        Garansi Toko : <br>
+                        <input required class="form-control" type="text" name="jumlahGaransi"/><br>
+
+                        Deskripsi : <br>
+                        <input required class="form-control" type="text" name="deskripsiBarang"/><br>
+
+                        Tipe : <br>
+                        <select name="tipe" class="form-control">
+                            <option th:each="i : ${listTipe}" th:value="${i.id}" th:text="${i.namaTipe}"></option>
+                        </select><br>
+
+                        Harga : <br>
+                        <input required class="form-control" type="text" name="hargaBarang"/><br>
+
+                        <br><br>
+                        
+                    </form>
+                    
+                    <a class="btn btn-primary" href="/">Home</a>
+                    <button class="btn btn-primary" type="submit" form="barang-form">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

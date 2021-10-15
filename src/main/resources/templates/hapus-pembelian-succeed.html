@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2 th:text="'Pembelian dengan invoice ' + ${delPemb.noInvoice} + ' berhasil dihapus.'"></h2>
+                <br>
+
+                <h5>Stok barang yang terupdate:</h5>
+                <ul th:each="i : ${barangs}">
+                    <li><h5 th:text="${i.namaBarang} + ' menjadi berjumlah ' + ${i.stok} + '.'"></h5></li>
+                </ul>
+                <br>
+                <a class="btn btn-warning font-weight-bold text-dark" th:href="@{/pembelian}">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</body>
+</html>

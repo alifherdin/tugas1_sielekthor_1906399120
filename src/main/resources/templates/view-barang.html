@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>PergiPergi</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Detail Barang</h2>
+                    <br>
+                    <p th:text="'Nama Barang    : ' + ${barang.namaBarang}"></p>
+                    <p th:text="'Kode Barang    : ' + ${barang.kodeBarang}"></p>
+                    <p th:text="'Merk Barang    : ' + ${barang.merkBarang}"></p>
+                    <p th:text="'Stok Barang    : ' + ${barang.stok}"></p>
+                    <p th:text="'Garansi Toko   : ' + ${barang.jumlahGaransi}"></p>
+                    <p th:text="'Deskripsi      : ' + ${barang.deskripsiBarang}"></p>
+                    <p th:text="'Tipe Barang    : ' + ${barang.tipe.getNamaTipe()}"></p>
+                    <p th:text="'Harga Barang   : ' + ${barang.hargaBarang}"></p>
+                    <br>
+
+                    <br>
+                    <a class="btn btn-primary" href="/barang">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

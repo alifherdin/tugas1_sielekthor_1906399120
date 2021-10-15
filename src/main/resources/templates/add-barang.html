@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2 th:text="'Barang dengan kode ' + ${kodeBarang} + ' telah ditambahkan.'"></h2>
+                    <br>
+                    <a class="btn btn-primary" href="/">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

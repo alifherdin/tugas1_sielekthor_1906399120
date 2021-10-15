@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Form Tambah Pembelian</h2>
+                    <br>
+                    <form id = "pembelian-form" th:action="@{/pembelian/tambah}" th:object="${pembelian}" method="POST">
+                        Nama Admin : <br>
+                        <input class="form-control" th:value="*{namaAdmin}" type="text" name="namaAdmin" form="pembelian-form"/><br>
+
+                        Pembeli: <br>
+                        <select name="member" class="form-control">
+                            <option th:each="i : ${listMember}" th:value="${i.id}" th:text="${i.namaMember}"></option>
+                        </select><br>
+
+                        <div>
+                            <input type="radio" id="true" name="isCash" value="1" checked>
+                            <label for="true">Tunai</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="false" name="isCash" value="0">
+                            <label for="false">Cicil</label>
+                        </div>
+    
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Daftar Barang</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="i, iters : *{listPembelianBarang}">
+                                    <td>
+                                        Nama Barang : <br>
+                                        <select th:field="*{listPembelianBarang[__${iters.index}__].barang}" class="form-control">
+                                            <div th:each="j : ${listBarang}">
+                                                <option th:value="${j.id}" th:text="${j.namaBarang}"></option>
+                                            </div>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        Qty : <br>
+                                        <input class="form-control" type="text" th:field="*{listPembelianBarang[__${iters.index}__].quantity}" form="pembelian-form"/><br><br>
+                                    </td>
+                                    <td>
+                                        <br>
+                                        <button th:if="${iters.index} != 0" th:value="${iters.index}" class="btn btn-danger" type="submit" name="hapusRow">Hapus</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" type="submit" name="tambahRow">Tambah Row</button><br><br><br>
+                        <button class="btn btn-primary" type="submit" name="gooo">Submit</button>
+                        <a class="btn btn-primary" href="/">Home</a>
+                    </form><br><br>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

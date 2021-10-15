@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Form Tambah Member</h2>
+                    <br>
+                    <form id = "member-form" th:action="@{/member/tambah}" th:object="${member}" method="POST">
+                        Nama : <br>
+                        <input class="form-control" type="text" name="namaMember"/><br><br>
+    
+                        Tanggal Lahir: <br>
+                        <input class="form-control" type="date" name="tanggalLahir"/><br><br>
+    
+                        Tanggal Pendaftaran : <br>
+                        <input class="form-control" type="date" name="tanggalPendaftaran"/><br><br>
+    
+                        Jenis Kelamin : <br>
+                        <input type="radio" name="jenisKelamin" th:value="@{0}" checked>
+                        <label for="age1">Perempuan</label><br>
+                        <input type="radio" name="jenisKelamin" th:value="@{1}">
+                        <label for="age2">Laki-laki</label><br>  
+
+                        <br><br>
+                        
+                    </form>
+                    
+                    <a class="btn btn-primary" href="/">Home</a>
+                    <button class="btn btn-primary" type="submit" form="member-form">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</body>
+</html>

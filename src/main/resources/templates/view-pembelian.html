@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Detail Pembelian</h2>
+                    <br>
+                    <p th:text="'No. Invoice        : ' + ${pmbe.noInvoice}"></p>
+                    <p th:text="'Total Harga        : ' + ${pmbe.total}"></p>
+                    <p th:text="'Member             : ' + ${pmbe.member.getNamaMember()}"></p>
+                    <p th:text="'Jumlah Barang      : ' + ${quantity}"></p>
+                    <p th:text="'Tanggal Pembelian  : ' + ${#dates.format(pmbe.tanggalPembelian, 'dd MMMMM yyyy')}"></p>
+                    <p th:text="'Nama Admin         : ' + ${pmbe.namaAdmin}"></p>
+                    <td th:if="${pmbe.isCash == 0}">Metode Pembayaran  : Non-tunai</td>
+                    <td th:if="${pmbe.isCash == 1}">Metode Pembayaran  : Tunai</td><br>
+                    <td><a class="btn btn-danger" th:href="@{/pembelian/hapus/} + ${pmbe.id}" style="border-radius: 10px;">Hapus Pembelian</a></td>
+                    <br><br>
+                    <div th:if="*{listBarang.size() != 0}">
+                        <table class="table table-striped text-center">
+                            <thead class="bg-warning">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Merk</th>
+                                    <th>Tipe</th>
+                                    <th>Tanggal Garansi</th>
+                                    <th>Harga</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="i, i_status : ${listBarang}">
+                                    <td th:text="${i_status.count}"></td>
+                                    <td th:text="${i.namaBarang}"></td>
+                                    <td th:text="${i.merkBarang}"></td>
+                                    <td th:text="${i.tipe.getNamaTipe()}"></td>
+                                    <td th:text="${#dates.format(listPembBarang[i_status.index].tanggalGaransi, 'dd MMMMM yyyy')}"></td>
+                                    <td th:text="${i.hargaBarang}"></td>
+                                    <td th:text="${listPembBarang[i_status.index].quantity}"></td>
+                                    <td th:text="${i.hargaBarang} * ${listPembBarang[i_status.index].quantity}"></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> <br><br>
+                    <br>
+                    <a class="btn btn-primary" href="/pembelian">Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
