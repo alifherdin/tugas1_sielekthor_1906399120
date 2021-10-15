@@ -20,8 +20,8 @@
                     <p th:text="'Jumlah Barang      : ' + ${quantity}"></p>
                     <p th:text="'Tanggal Pembelian  : ' + ${#dates.format(pmbe.tanggalPembelian, 'dd MMMMM yyyy')}"></p>
                     <p th:text="'Nama Admin         : ' + ${pmbe.namaAdmin}"></p>
-                    <td th:if="${pmbe.isCash == 0}">Metode Pembayaran  : Non-tunai</td>
-                    <td th:if="${pmbe.isCash == 1}">Metode Pembayaran  : Tunai</td><br>
+                    <td th:if="${pmbe.isCash} == false">Metode Pembayaran  : Cicilan</td>
+                    <td th:if="${pmbe.isCash} == true">Metode Pembayaran  : Tunai</td><br><br>
                     <td><a class="btn btn-danger" th:href="@{/pembelian/hapus/} + ${pmbe.id}" style="border-radius: 10px;">Hapus Pembelian</a></td>
                     <br><br>
                     <div th:if="*{listBarang.size() != 0}">

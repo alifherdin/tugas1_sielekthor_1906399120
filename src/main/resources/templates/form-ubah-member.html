@@ -32,7 +32,7 @@
                     Jenis Kelamin : <br>
                     <input th:checked="${member.jenisKelamin == 0}" type="radio" name="jenisKelamin" th:value="@{0}" disabled>
                     <label for="age1">Perempuan</label><br>
-                    <input th:checked="${member.jenisKelamin == 1}" type="radio" name="jenisKelamin" value="@{1}" disabled>
+                    <input th:checked="${member.jenisKelamin == 1}" type="radio" name="jenisKelamin" th:value="@{1}" disabled>
                     <label for="age2">Laki-laki</label><br>  
 
                     <input th:if="${member.jenisKelamin == 0}" type="hidden" th:field="*{jenisKelamin}" />
