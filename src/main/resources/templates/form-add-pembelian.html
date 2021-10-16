@@ -46,7 +46,7 @@
                                         Nama Barang : <br>
                                         <select th:field="*{listPembelianBarang[__${iters.index}__].barang}" class="form-control">
                                             <div th:each="j : ${listBarang}">
-                                                <option th:value="${j.id}" th:text="${j.namaBarang}"></option>
+                                                <option th:value="${j.id}" th:text="${j.namaBarang} + ' (stok barang: ' + ${j.stok} + ')'"></option>
                                             </div>
                                         </select>
                                     </td>
