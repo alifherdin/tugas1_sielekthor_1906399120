@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Sielekthor</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2> Pembelian gagal.</h2>
+                <br>
+
+                <h5>Hal ini dapat terjadi karena jumlah yang anda pilih melebihi stok.</h5>
+                <br>
+                <a class="btn btn-warning font-weight-bold text-dark" th:href="@{/pembelian}">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+</body>
+</html>

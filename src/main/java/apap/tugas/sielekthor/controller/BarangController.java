@@ -102,12 +102,15 @@ public class BarangController {
     @GetMapping(value = "barang/cari")
     public String cariBarangForm(Model model) {
         List<TipeModel> listTipe = tipeService.getListTipe();
-        model.addAttribute("listTipe", listTipe);        
+        List<BarangModel> listBarang = new ArrayList<>();
+
+        model.addAttribute("listTipe", listTipe);   
+        model.addAttribute("listBarang", listBarang);      
 
         return "cari-barang";
     }
 
-    @GetMapping(value = "barang/cari/stok")
+    @GetMapping(value = "barang/tipe/stok")
     public String cariBarang(@RequestParam(value = "tipe") Long tipe, @RequestParam(value = "stok") Boolean stok, Model model) {
         List<BarangModel> listBarang = new ArrayList<>();
         List<TipeModel> listTipe = tipeService.getListTipe();

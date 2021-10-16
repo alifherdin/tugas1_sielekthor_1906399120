@@ -13,7 +13,7 @@
                 <div class="justify-content-center">
                     <h2>Cari Barang</h2>
                     <br>
-                    <form th:action="@{/barang/cari/stok/(stok=${stok})}" method="GET">
+                    <form th:action="@{/barang/tipe/stok/(stok=${stok})}" method="GET">
     
                         Tipe : <br>
                         <select name="tipe" class="form-control">
@@ -30,7 +30,7 @@
                         <label for="soldout">Sold out</label><br><br>
 
                         <button class="btn btn-primary" type="submit">Submit</button>
-                        <a class="btn btn-primary" href="/home">Home</a>
+                        <a class="btn btn-primary" href="/">Home</a>
                     </form>
                 </div>
             </div>        
@@ -63,7 +63,7 @@
                         <div>
                             <td><a class="btn btn-primary font-weight-bold text-dark" th:href="@{/barang/lihat/} + ${i.id}" style="border-radius: 10px;">Lihat</a></td>
                             <td><a class="btn btn-warning font-weight-bold text-dark" th:href="@{/barang/ubah/} + ${i.id}" style="border-radius: 10px;">Ubah</a></td>
-                            <td><a class="btn btn-danger font-weight-bold text-dark" th:href="@{/barang/del/} + ${i.id}" style="border-radius: 10px;">Hapus</a></td>
+                            <td><a class="btn btn-danger font-weight-bold text-dark" href="#" style="border-radius: 10px;">Hapus</a></td>
                         </div>
                     </tr>
                 </tbody>

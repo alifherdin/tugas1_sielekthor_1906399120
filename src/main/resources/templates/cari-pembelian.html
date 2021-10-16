@@ -16,7 +16,7 @@
                     <form th:action="@{/cari/pembelian/(idMember=${idMember},tipePembayaran=${tipePembayaran})}" method="GET">
     
                         Member : <br>
-                        <select name="tipe" class="form-control">
+                        <select name="idMember" class="form-control">
                             <div th:each="j : ${listMember}">
                                 <option th:value="${j.id}" th:text="${j.namaMember}"></option>
                             </div>
@@ -30,7 +30,7 @@
                         <label for="cicil">Cicilan</label><br>  
 
                         <button class="btn btn-primary" type="submit">Submit</button>
-                        <a class="btn btn-primary" href="/home">Home</a>
+                        <a class="btn btn-primary" href="/">Home</a>
                     </form>
                 </div>
             </div>        

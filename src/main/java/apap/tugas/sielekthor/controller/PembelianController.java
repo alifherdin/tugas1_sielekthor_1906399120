@@ -2,8 +2,12 @@ package apap.tugas.sielekthor.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.time.LocalTime;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +100,14 @@ public class PembelianController {
     public String addPembelian(Model model) {
         PembelianModel newPemb = new PembelianModel();
         List<MemberModel> listMember = memberService.getListMember();
-        List<BarangModel> listBarang = barangService.getListBarang();
+        List<BarangModel> listBarangs = barangService.getListBarang();
+        List<BarangModel> listBarang = new ArrayList<>();
+
+        for (BarangModel i : listBarangs) {
+            if (i.getStok() > 0) {
+                listBarang.add(i);
+            }
+        }
 
         List<PembelianBarangModel> listPB = new ArrayList<PembelianBarangModel>();
         PembelianBarangModel tempPB =  new PembelianBarangModel();
@@ -112,6 +123,13 @@ public class PembelianController {
 
     @PostMapping(value = "pembelian/tambah", params = {"gooo"})
     public String addPembelianSubmit(@ModelAttribute PembelianModel pembelian, Model model) {
+
+        for (PembelianBarangModel i : pembelian.getListPembelianBarang()) {
+            if (i.getQuantity() > i.getBarang().getStok()) {
+                return "add-pembelian-failed";
+            }
+        }
+
         PembelianModel pmbl = pembelianService.addPembelian(pembelian);
         
         model.addAttribute("new_pemb", pmbl);
@@ -122,8 +140,15 @@ public class PembelianController {
     @PostMapping(value = "pembelian/tambah", params = {"tambahRow"})
     public String addPembelianTambahRow(@ModelAttribute PembelianModel pembelian, Model model) {
         List<MemberModel> listMember = memberService.getListMember();
-        List<BarangModel> listBarang = barangService.getListBarang();
         List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+        List<BarangModel> listBarangs = barangService.getListBarang();
+        List<BarangModel> listBarang = new ArrayList<>();
+
+        for (BarangModel i : listBarangs) {
+            if (i.getStok() > 0) {
+                listBarang.add(i);
+            }
+        }
 
         PembelianBarangModel tempPB =  new PembelianBarangModel();
         listPB.add(tempPB);
@@ -139,8 +164,15 @@ public class PembelianController {
     @PostMapping(value = "pembelian/tambah", params = {"hapusRow"})
     public String addPembelianHapusRow(@ModelAttribute PembelianModel pembelian, @RequestParam("hapusRow") Integer row, Model model) {
         List<MemberModel> listMember = memberService.getListMember();
-        List<BarangModel> listBarang = barangService.getListBarang();
         List<PembelianBarangModel> listPB = pembelian.getListPembelianBarang();
+        List<BarangModel> listBarangs = barangService.getListBarang();
+        List<BarangModel> listBarang = new ArrayList<>();
+
+        for (BarangModel i : listBarangs) {
+            if (i.getStok() > 0) {
+                listBarang.add(i);
+            }
+        }
 
         listPB.remove(listPB.get(row));
         pembelian.setListPembelianBarang(listPB);
@@ -195,6 +227,44 @@ public class PembelianController {
         model.addAttribute("listMember", members);
 
         return "cari-pembelian";
+    }
+
+    @GetMapping(value = "cari/member/paling-banyak")
+    public String cariTerbanyak(Model model) {
+        Map<MemberModel, Integer> map = new HashMap<>();
+        List<MemberModel> listMember = new ArrayList<>();
+        List<Integer> listJumlah = new ArrayList<>();
+
+        
+        for (MemberModel i : memberService.getListMember()) {
+            Integer tempJml = 0;
+            List<PembelianModel> pembeliansTemp = i.getListPembelian();
+
+            for (PembelianModel j : pembeliansTemp) {
+                tempJml += j.getTotal();
+            }
+
+            map.put(i, tempJml);
+        }
+
+        Object[] a = map.entrySet().toArray();
+
+        Arrays.sort(a, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                return ((Map.Entry<MemberModel, Integer>) o2).getValue().compareTo(((Map.Entry<MemberModel, Integer>) o1).getValue());
+            }
+        });
+
+        for (Object i : a) {
+            listMember.add(((Map.Entry<MemberModel, Integer>) i).getKey());
+            listJumlah.add(((Map.Entry<MemberModel, Integer>) i).getValue());
+        }
+        
+
+        model.addAttribute("listMember", listMember);
+        model.addAttribute("listJumlah", listJumlah);
+
+        return "cari-member-terbanyak";
     }
     
 }

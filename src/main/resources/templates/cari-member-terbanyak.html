@@ -11,7 +11,7 @@
     <div class="m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 class="text-center">List Member</h2>
+                <h2 class="text-center">List Member Terbanyak</h2>
                 <br><br>
                 <a class="btn btn-warning font-weight-bold text-dark" th:href="@{/member/tambah}"  style="border-radius: 16px;">+ Tambah member</a> 
                 <br><br>
@@ -23,7 +23,7 @@
                             <th>Tanggal Lahir</th>
                             <th>Tanggal Pendaftaran</th>
                             <th>Jenis Kelamin</th>
-                            <th></th>
+                            <th>Total Pembelian</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +34,7 @@
                             <td th:text="${#dates.format(i.tanggalPendaftaran, 'dd MMMMM yyyy')}"></td>
                             <td th:if="${i.jenisKelamin == 0}">Perempuan</td>
                             <td th:if="${i.jenisKelamin == 1}">Laki-laki</td>
-                            <div>
-                                <td><a class="btn btn-warning font-weight-bold text-dark" th:href="@{/member/ubah/} + ${i.id}" style="border-radius: 10px;">Ubah</a></td>
-                            </div>
+                            <td th:text="${listJumlah[i_status.index]}"></td>
                         </tr>
                     </tbody>
                 </table>
