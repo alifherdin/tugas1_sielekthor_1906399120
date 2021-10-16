@@ -162,11 +162,14 @@ public class PembelianServiceImpl implements PembelianService {
 
         for (PembelianBarangModel i : pembelian.getListPembelianBarang()) {
             BarangModel tempBarang = new BarangModel();
-
-            i.getBarang().setStok(i.getBarang().getStok() + i.getQuantity());
+            int tempQ2 = i.getBarang().getStok();
+            int tempQ = i.getQuantity();
 
             tempBarang.setNamaBarang(i.getBarang().getNamaBarang());
-            tempBarang.setStok(i.getBarang().getStok() + i.getQuantity());
+            tempBarang.setStok(tempQ2 + tempQ);
+
+            i.getBarang().setStok(tempQ2 + tempQ);
+
 
             temp.add(tempBarang);
         }
